@@ -30,6 +30,11 @@ import inputn from "../../assets/n.webp";
 import inputubhold from "../../assets/ubhold.webp";
 import inputufhold from "../../assets/ufhold.webp";
 import inputuhold from "../../assets/uhold.webp";
+import inputss from "../../assets/ss.webp";
+import inputssl from "../../assets/ssl.webp";
+import inputssr from "../../assets/ssr.webp";
+import inputwr from "../../assets/wr_running.webp";
+import inputws from "../../assets/ws_standing.webp";
 
 import propchip from "../../assets/chip.webp";
 import propheat from "../../assets/heat.webp";
@@ -42,6 +47,7 @@ import propfloorbreak from "../../assets/Floorbreak.webp";
 import propinto from "../../assets/into.webp";
 import propwallblast from "../../assets/Wallblast.webp";
 import propwallbreak from "../../assets/Wallbreak.webp";
+import propch from "../../assets/ch.webp";
 import propwallbound from "../../assets/Wallbound.webp";
 
 const inputImageMap: Record<string, string> = {
@@ -75,6 +81,12 @@ const inputImageMap: Record<string, string> = {
   ubhold: inputubhold,
   ufhold: inputufhold,
   uhold: inputuhold,
+  ss: inputss,
+  ssl: inputssl,
+  ssr: inputssr,
+  wr: inputwr,
+  ws: inputws,
+  into: propinto,
   chip: propchip,
   heat: propheat,
   homing: prophoming,
@@ -83,11 +95,10 @@ const inputImageMap: Record<string, string> = {
   balconybreak: propbalconybreak,
   floorblast: propfloorblast,
   floorbreak: propfloorbreak,
-  into: propinto,
   wallblast: propwallblast,
   wallbound: propwallbound,
-  wallbreak: propwallbreak
-
+  wallbreak: propwallbreak,
+  counterhit: propch,
 };
 
 const propertiesImageMap: Record<PropertiesType, string> = {
