@@ -44,7 +44,7 @@ import proptornado from "../../assets/tornado.webp";
 import propbalconybreak from "../../assets/Balconybreak.webp";
 import propfloorblast from "../../assets/Floorblast.webp";
 import propfloorbreak from "../../assets/Floorbreak.webp";
-import propinto from "../../assets/into.png";
+import propinto from "../../assets/into.webp";
 import propwallblast from "../../assets/Wallblast.webp";
 import propwallbreak from "../../assets/Wallbreak.webp";
 import propch from "../../assets/ch.webp";
