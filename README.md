@@ -1,1 +1,1 @@
-https://acayirli.github.io/tekken8sheet/
+https://noxouille.github.io/tekken8sheet/
