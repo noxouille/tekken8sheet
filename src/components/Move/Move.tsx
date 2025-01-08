@@ -36,6 +36,13 @@ import propheat from "../../assets/heat.webp";
 import prophoming from "../../assets/homing.webp";
 import proppowercrush from "../../assets/powercrush.webp";
 import proptornado from "../../assets/tornado.webp";
+import propbalconybreak from "../../assets/Balconybreak.webp";
+import propfloorblast from "../../assets/Floorblast.webp";
+import propfloorbreak from "../../assets/Floorbreak.webp";
+import propinto from "../../assets/into.webp";
+import propwallblast from "../../assets/Wallblast.webp";
+import propwallbreak from "../../assets/Wallbreak.webp";
+import propwallbound from "../../assets/Wallbound.webp";
 
 const inputImageMap: Record<string, string> = {
   "1": input1,
@@ -73,6 +80,14 @@ const inputImageMap: Record<string, string> = {
   homing: prophoming,
   powercrush: proppowercrush,
   tornado: proptornado,
+  balconybreak: propbalconybreak,
+  floorblast: propfloorblast,
+  floorbreak: propfloorbreak,
+  into: propinto,
+  wallblast: propwallblast,
+  wallbound: propwallbound,
+  wallbreak: propwallbreak
+
 };
 
 const propertiesImageMap: Record<PropertiesType, string> = {
