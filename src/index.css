@@ -13,15 +13,31 @@
 :root {
   font-family: RobotoCondensed, sans-serif;
   line-height: 1.5;
-  color-scheme: dark;
-  color: rgba(0, 0, 0, 1);
-  background: rgb(255, 255, 255);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
   box-sizing: border-box;
+}
+
+/* Styles for screen display */
+@media screen {
+  :root {
+    color-scheme: dark;
+    color: rgba(255, 255, 255, 0.87);
+    background: rgb(96,39,57);
+    background: linear-gradient(0deg, rgba(96,39,57,1) 0%, rgba(10,23,34,1) 100%);
+  }
+}
+
+/* Styles for printing */
+@media print {
+  :root {
+    color: black;
+    background: white;
+    background-image: none; /* Removes the gradient */
+  }
 }
 
 a {
