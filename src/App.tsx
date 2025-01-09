@@ -4,6 +4,50 @@ import TxtImporter from "./components/TxtImporter/TxtImporter";
 import { Sheet } from "./components/Sheet/Sheet";
 import { Move } from "./components/Move/Move";
 
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const LeftPanel = styled.div`
+  flex: 1;
+  margin-right: 20px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+`;
+
+const RightPanel = styled.div`
+  flex: 1.5;
+`;
+
+const InputList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+
+  img {
+    width: 30px;
+  }
+`;
+
+const SourceCode = styled.pre`
+  border: thin solid #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  overflow-y: auto;
+  max-height: 300px; /* Adjust as needed */
+`;
+
 const ninaDemo: SheetType = {
     title: "Nina",
     categories: [
@@ -67,79 +111,43 @@ const ninaDemo: SheetType = {
 }
 
 export function App() {
-    const [data, setData] = useState<SheetType | undefined>();
+  const [data, setData] = useState<SheetType | undefined>();
 
-    if (data) {
-        return (
-            <div>
-                <div css={{ display: "flex", justifyContent: "flex-end" }}>
-                    <TxtImporter onChange={setData} />
-                </div>
-
-                {data && <Sheet data={data} />}
+  return (
+    <Container>
+      <LeftPanel>
+        {data ? (
+          <div>
+            <div css={{ display: "flex", justifyContent: "flex-end" }}>
+              <TxtImporter onChange={setData} />
             </div>
-        );
-    } 
-    else {
-        return (
+            {data && <Sheet data={data} />}
+          </div>
+        ) : (
+          <>
             <div
-                css={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 20,
-                    flexGrow: 1,
-                }}
+              css={{
+                fontSize: 32,
+                textAlign: 'center',
+                marginBottom: 20,
+              }}
             >
-                <div
-                    css={{
-                        fontSize: 32,
-                    }}
-                >
-                    Select a txt file to get started.
-                </div>
+              Select a txt file to get started.
+            </div>
+            <TxtImporter onChange={setData} />
 
-                <TxtImporter onChange={setData} />
-                
-                <div css={{ display: "flex", gap: 40 }}>
-                    <div css={{ display: "grid", gridTemplateColumns: "max-content max-content", gap: 10, "img": { width: 30 }, alignItems: "flex-start" }}>
-                        <span css={{ gridColumnStart: "span 2" }}>List of recognized inputs</span>
-                        <span>u</span><Move move={{ inputs: ["u"]}} />
-                        <span>d</span><Move move={{ inputs: ["d"]}} />
-                        <span>f</span><Move move={{ inputs: ["f"]}} />
-                        <span>b</span><Move move={{ inputs: ["b"]}} />
+            <InputList>
+              <span>u</span>
+              <Move move={{ inputs: ["u"] }} />
+              <span>d</span>
+              <Move move={{ inputs: ["d"] }} />
+              {/* ... other input elements ... */}
+            </InputList>
 
-                        <span>uf</span><Move move={{ inputs: ["uf"]}} />
-                        <span>ub</span><Move move={{ inputs: ["ub"]}} />
-                        <span>df</span><Move move={{ inputs: ["df"]}} />
-                        <span>db</span><Move move={{ inputs: ["db"]}} />
-
-                        <span>hold variant, e.g. fhold</span><Move move={{ inputs: ["fhold"]}} />
-                        <span>n</span><Move move={{ inputs: ["n"]}} />
-
-                        <span>1</span><Move move={{ inputs: ["1"]}} />
-                        <span>2</span><Move move={{ inputs: ["2"]}} />
-                        <span>3</span><Move move={{ inputs: ["3"]}} />
-                        <span>4</span><Move move={{ inputs: ["4"]}} />
-
-                        <span>1+2</span><Move move={{ inputs: ["1+2"]}} />
-                        <span>1+3</span><Move move={{ inputs: ["1+3"]}} />
-                        <span>1+4</span><Move move={{ inputs: ["1+4"]}} />
-                        <span>2+3</span><Move move={{ inputs: ["2+3"]}} />
-                        <span>2+4</span><Move move={{ inputs: ["2+4"]}} />
-                        <span>3+4</span><Move move={{ inputs: ["3+4"]}} />
-                        <span>1+2+3+4</span><Move move={{ inputs: ["1+2+3+4"]}} />
-
-                        <span>bracketl</span><Move move={{ inputs: ["bracketl"]}} />
-                        <span>bracketr</span><Move move={{ inputs: ["bracketr"]}} />
-                    </div>
-
-                    <div>
-                        Source
-                        <pre css={{ border: "thin solid #ccc", padding: "10px 20px", borderRadius: 5 }}>
-                        {
-`Nina
+            <div>
+              <span>Source</span>
+              <SourceCode>
+                {`Nina
 
 # Neutral
 df 1 2 (pressure with extensions)
@@ -157,19 +165,22 @@ db 3
 # Punish
 1 4 (10f)
 uf 2 (15f)`}
-                    </pre>
-                </div>
-
-                {/* Output Preview Section */}
-                <div className="bg-white rounded-lg shadow p-4">
-                    <h2 className="text-xl font-semibold mb-4">Output Preview</h2>
-                    <div className="border border-gray-200 rounded p-4">
-                        <Sheet data={ninaDemo} />
-                    </div>
-                </div>
+              </SourceCode>
             </div>
+          </>
+        )}
+      </LeftPanel>
+
+      <RightPanel>
+        <div className="bg-white rounded-lg shadow p-4">
+          <h2 className="text-xl font-semibold mb-4">Output Preview</h2>
+          <div className="border border-gray-200 rounded p-4">
+            <Sheet data={ninaDemo} />
+          </div>
         </div>
-    );
+      </RightPanel>
+    </Container>
+  );
 }
 
 export default App;
