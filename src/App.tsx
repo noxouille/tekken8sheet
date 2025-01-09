@@ -184,8 +184,7 @@ uf 2 (15f)`}
                         <Sheet data={ninaDemo} />
                     </div>
                 </div>
-                </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
