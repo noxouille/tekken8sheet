@@ -12,38 +12,30 @@ export const parseMove = (line: string): MoveType | null => {
     return { inputs, hint };
   };
   
-  export const parseTextFile = (text: string): SheetType => {
-    const lines = text
-      .split("\n")
-      .map((line) => line.trim())
-      .filter(Boolean);
+  export const parseTxtFile = (text: string): SheetType => {
+    const lines = text.split('\n').map(line => line.trim());
     const title = lines[0];
     const categories: CategoryType[] = [];
     let currentCategory: CategoryType | null = null;
+  
+    lines.slice(1).forEach(line => {
+      if (!line) return; // Skip empty lines
 
-    for (let i = 1; i < lines.length; i++) {
-      const line = lines[i];
-      if (line.startsWith("#")) {
-        if (currentCategory) {
-          categories.push(currentCategory);
-        }
-        currentCategory = {
-          title: line.slice(1).trim(),
-          moves: [],
-        };
-      } else if (currentCategory) {
-        const moveMatch = line.match(/^(.*?)(?:\s*\((.*?)\))?$/);
-        if (moveMatch) {
-          const inputs = moveMatch[1].trim().split(/\s+/);
-          const hint = moveMatch[2] || "";
-          currentCategory.moves.push({ inputs, hint });
+      if(line.startsWith('#'))
+      {
+        currentCategory = { title: line.substring(1).trim(), moves: [] };
+        categories.push(currentCategory);        
+      }
+      else
+      {
+        const move = parseMove(line);
+
+        if(currentCategory && move)
+        {
+          currentCategory.moves.push(move);
         }
       }
-    }
-
-    if (currentCategory) {
-      categories.push(currentCategory);
-    }
-
+    });
+  
     return { title, categories };
   };
