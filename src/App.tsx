@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from "@emotion/styled";
 import { SheetType } from "./types";
 import TxtImporter from "./components/TxtImporter/TxtImporter";
 import { Sheet } from "./components/Sheet/Sheet";
