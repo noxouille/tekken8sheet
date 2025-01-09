@@ -12,7 +12,7 @@ export const parseMove = (line: string): MoveType | null => {
     return { inputs, hint };
   };
   
-  export const parseTextFile = (text: string): SheetType => {
+  export const parseTxtFile = (text: string): SheetType => {
     const lines = text
       .split("\n")
       .map((line) => line.trim())
