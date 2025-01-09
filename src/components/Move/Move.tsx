@@ -111,29 +111,40 @@ const propertiesImageMap: Record<PropertiesType, string> = {
 
 export function Move({ move }: { move: MoveType }) {
     return (
-        <>
-            <div css={{ display: "flex", gap: 5, alignItems: "center" }}>
-                {
-                    move.inputs.map((input, index) => (
-                        input in inputImageMap ? <img key={index} src={inputImageMap[input]} alt={`Input ${input}`} /> : <span key={index}>{input}</span>
-                    ))
-                }
-            </div>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+        {/* Input sequence */}
+        <div className="flex flex-wrap items-center gap-1">
+          {move.inputs.map((input, index) => (
+            <img
+              key={`${input}-${index}`}
+              src={inputImageMap[input]}
+              alt={`Input ${input}`}
+              className="w-6 h-6 object-contain"
+              loading="lazy"
+            />
+          ))}
+        </div>
 
-            <div css={{ display: "flex", gap: 5, alignItems: "center" }}>
-                {
-                    move.hitProperties &&
-                        move.hitProperties.map((hitProp, index) => (
-                            hitProp in propertiesImageMap && <img src={propertiesImageMap[hitProp]} alt={`Hit property ${hitProp}`} />
-                        ))
-                }
-            </div>
+        {/* Hit properties */}
+        {move.hitProperties && move.hitProperties.length > 0 && (
+          <div className="flex flex-wrap items-center gap-1">
+            {move.hitProperties.map((prop, index) => (
+              <img
+                key={`${prop}-${index}`}
+                src={propertiesImageMap[prop]}
+                alt={`Property ${prop}`}
+                className="w-6 h-6 object-contain"
+                loading="lazy"
+                title={prop}
+              />
+            ))}
+          </div>
+        )}
 
-            <span>
-                {
-                    move.hint
-                }
-            </span>
-        </>
+        {/* Hint text */}
+        {move.hint && (
+          <span className="text-sm text-gray-600 italic">{move.hint}</span>
+        )}
+      </div>
     );
 }
