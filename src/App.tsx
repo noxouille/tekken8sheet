@@ -156,20 +156,21 @@ db 3
 
 # Punish
 1 4 (10f)
-uf 2 (15f)`}
-                    </pre>
-                </div>
+uf 2 (15f)
+`
+                        }
+                        </pre>
+                    </div>
 
-                {/* Output Preview Section */}
-                <div className="bg-white rounded-lg shadow p-4">
-                    <h2 className="text-xl font-semibold mb-4">Output Preview</h2>
-                    <div className="border border-gray-200 rounded p-4">
-                        <Sheet data={ninaDemo} />
+                    <div>
+                        Output
+
+                        <div css={{ border: "thin solid #ccc", padding: "10px 20px", borderRadius: 5 }}>
+                            <Sheet data={ninaDemo} />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
-
-export default App;
