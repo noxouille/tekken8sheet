@@ -29,19 +29,11 @@ export type InputsType =
   | "ubhold"
   | "ufhold"
   | "uhold"
-  | "ss"
-  | "ssl"
-  | "ssr"
-  | "wr"
-  | "ws"
-  | "into";
-
-export type PropertiesType =
-  | "chip"
-  | "heat"
-  | "homing"
   | "powercrush"
   | "tornado"
+  | "heat"
+  | "homing"
+  | "chip"
   | "balconybreak"
   | "floorblast"
   | "floorbreak"
@@ -49,6 +41,8 @@ export type PropertiesType =
   | "wallbound"
   | "wallbreak"
   | "counterhit";
+
+export type PropertiesType = "powercrush" | "tornado" | "heat" | "homing" | "chip";
 
 export type MoveType = {
     inputs: string[],
