@@ -71,13 +71,12 @@ export function App() {
 
     if (data) {
         return (
-            <div>
-                <div css={{ display: "flex", justifyContent: "flex-end" }}>
-                    <TxtImporter onChange={setData} />
-                </div>
-
-                {data && <Sheet data={data} />}
+          <div className="p-4">
+            <div className="flex justify-end mb-4">
+              <TxtImporter onChange={setData} />
             </div>
+            {data && <Sheet data={data} />}
+          </div>
         );
     } 
     else {
@@ -101,45 +100,62 @@ export function App() {
                 </div>
 
                 <TxtImporter onChange={setData} />
-                
-                <div css={{ display: "flex", gap: 40 }}>
-                    <div css={{ display: "grid", gridTemplateColumns: "max-content max-content", gap: 10, "img": { width: 30 }, alignItems: "flex-start" }}>
-                        <span css={{ gridColumnStart: "span 2" }}>List of recognized inputs</span>
-                        <span>u</span><Move move={{ inputs: ["u"]}} />
-                        <span>d</span><Move move={{ inputs: ["d"]}} />
-                        <span>f</span><Move move={{ inputs: ["f"]}} />
-                        <span>b</span><Move move={{ inputs: ["b"]}} />
 
-                        <span>uf</span><Move move={{ inputs: ["uf"]}} />
-                        <span>ub</span><Move move={{ inputs: ["ub"]}} />
-                        <span>df</span><Move move={{ inputs: ["df"]}} />
-                        <span>db</span><Move move={{ inputs: ["db"]}} />
+                <div className="w-full max-w-6xl mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>                
+                {/* Input Reference Section */}
+                <div className="bg-white rounded-lg shadow p-4">
+                    <h2 className="text-xl font-semibold mb-4">List of recognized inputs</h2>
+                    <div className="grid grid-cols-2 gap-3">
+                        <div className="col-span-2 font-medium">Directional Inputs</div>
+                        {[
+                            ['u', 'up'],
+                            ['d', 'down'],
+                            ['f', 'forward'],
+                            ['b', 'back'],
+                            ['uf', 'up-forward'],
+                            ['ub', 'up-back'],
+                            ['df', 'down-forward'],
+                            ['db', 'down-back'],
+                        ].map(([input, label]) => (
+                            <div key={input} className="flex items-center gap-2">
+                                <span className="w-16">{input}</span>
+                                <Move move={{ inputs: [input] }} />
+                            </div>
+                        ))}
 
-                        <span>hold variant, e.g. fhold</span><Move move={{ inputs: ["fhold"]}} />
-                        <span>n</span><Move move={{ inputs: ["n"]}} />
+                        <div className="col-span-2 font-medium mt-4">Button Inputs</div>
+                        {[
+                            ['1', ''], ['2', ''], ['3', ''], ['4', ''],
+                            ['1+2', ''], ['1+3', ''], ['1+4', ''], 
+                            ['2+3', ''], ['2+4', ''], ['3+4', ''],
+                            ['1+2+3+4', '']
+                        ].map(([input]) => (
+                            <div key={input} className="flex items-center gap-2">
+                                <span className="w-16">{input}</span>
+                                <Move move={{ inputs: [input] }} />
+                            </div>
+                        ))}
 
-                        <span>1</span><Move move={{ inputs: ["1"]}} />
-                        <span>2</span><Move move={{ inputs: ["2"]}} />
-                        <span>3</span><Move move={{ inputs: ["3"]}} />
-                        <span>4</span><Move move={{ inputs: ["4"]}} />
-
-                        <span>1+2</span><Move move={{ inputs: ["1+2"]}} />
-                        <span>1+3</span><Move move={{ inputs: ["1+3"]}} />
-                        <span>1+4</span><Move move={{ inputs: ["1+4"]}} />
-                        <span>2+3</span><Move move={{ inputs: ["2+3"]}} />
-                        <span>2+4</span><Move move={{ inputs: ["2+4"]}} />
-                        <span>3+4</span><Move move={{ inputs: ["3+4"]}} />
-                        <span>1+2+3+4</span><Move move={{ inputs: ["1+2+3+4"]}} />
-
-                        <span>bracketl</span><Move move={{ inputs: ["bracketl"]}} />
-                        <span>bracketr</span><Move move={{ inputs: ["bracketr"]}} />
+                        <div className="col-span-2 font-medium mt-4">Special Inputs</div>
+                        {[
+                            ['bracketl', 'Left Bracket'],
+                            ['bracketr', 'Right Bracket'],
+                            ['fhold', 'Hold Forward'],
+                            ['n', 'Neutral'],
+                        ].map(([input, label]) => (
+                            <div key={input} className="flex items-center gap-2">
+                                <span className="w-16">{input}</span>
+                                <Move move={{ inputs: [input] }} />
+                            </div>
+                        ))}
                     </div>
+                </div>
 
-                    <div>
-                        Source
-                        <pre css={{ border: "thin solid #ccc", padding: "10px 20px", borderRadius: 5 }}>
-                        {
-`Nina
+                {/* Source Example Section */}
+                <div className="bg-white rounded-lg shadow p-4">
+                    <h2 className="text-xl font-semibold mb-4">Source Example</h2>
+                    <pre className="text-sm bg-gray-50 p-4 rounded overflow-x-auto">
+{`Nina
 
 # Neutral
 df 1 2 (pressure with extensions)
@@ -156,19 +172,17 @@ db 3
 
 # Punish
 1 4 (10f)
-uf 2 (15f)
-`
-                        }
-                        </pre>
-                    </div>
+uf 2 (15f)`}
+                    </pre>
+                </div>
 
-                    <div>
-                        Output
-
-                        <div css={{ border: "thin solid #ccc", padding: "10px 20px", borderRadius: 5 }}>
-                            <Sheet data={ninaDemo} />
-                        </div>
+                {/* Output Preview Section */}
+                <div className="bg-white rounded-lg shadow p-4">
+                    <h2 className="text-xl font-semibold mb-4">Output Preview</h2>
+                    <div className="border border-gray-200 rounded p-4">
+                        <Sheet data={ninaDemo} />
                     </div>
+                </div>
                 </div>
             </div>
         );
