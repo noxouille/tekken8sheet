@@ -81,27 +81,14 @@ export function App() {
     } 
     else {
         return (
-            <div
-                css={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 20,
-                    flexGrow: 1,
-                }}
-            >
-                <div
-                    css={{
-                        fontSize: 32,
-                    }}
-                >
-                    Select a txt file to get started.
-                </div>
+        <div className="min-h-screen p-4 flex flex-col items-center">
+            <div className="text-3xl mb-6 text-center">
+                Select a txt file to get started.
+            </div>
 
-                <TxtImporter onChange={setData} />
+            <TxtImporter onChange={setData} />
 
-                <div className="w-full max-w-6xl mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>                
+            <div className="w-full max-w-6xl mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Input Reference Section */}
                 <div className="bg-white rounded-lg shadow p-4">
                     <h2 className="text-xl font-semibold mb-4">List of recognized inputs</h2>
