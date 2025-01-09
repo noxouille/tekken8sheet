@@ -108,14 +108,14 @@ export function App() {
                     <div className="grid grid-cols-2 gap-3">
                         <div className="col-span-2 font-medium">Directional Inputs</div>
                         {[
-                            ['u', 'up'],
-                            ['d', 'down'],
-                            ['f', 'forward'],
-                            ['b', 'back'],
-                            ['uf', 'up-forward'],
-                            ['ub', 'up-back'],
-                            ['df', 'down-forward'],
-                            ['db', 'down-back'],
+                            ['u', 'u'],
+                            ['d', 'd'],
+                            ['f', 'f'],
+                            ['b', 'b'],
+                            ['uf', 'uf'],
+                            ['ub', 'ub'],
+                            ['df', 'df'],
+                            ['db', 'db'],
                         ].map(([input, label]) => (
                             <div key={input} className="flex items-center gap-2">
                                 <span className="w-16">{input}</span>
@@ -125,10 +125,10 @@ export function App() {
 
                         <div className="col-span-2 font-medium mt-4">Button Inputs</div>
                         {[
-                            ['1', ''], ['2', ''], ['3', ''], ['4', ''],
-                            ['1+2', ''], ['1+3', ''], ['1+4', ''], 
-                            ['2+3', ''], ['2+4', ''], ['3+4', ''],
-                            ['1+2+3+4', '']
+                            ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'],
+                            ['1+2', '1+2'], ['1+3', '1+3'], ['1+4', '1+4'], 
+                            ['2+3', '2+3'], ['2+4', '2+4'], ['3+4', '3+4'],
+                            ['1+2+3+4', '1+2+3+4']
                         ].map(([input]) => (
                             <div key={input} className="flex items-center gap-2">
                                 <span className="w-16">{input}</span>
@@ -138,10 +138,11 @@ export function App() {
 
                         <div className="col-span-2 font-medium mt-4">Special Inputs</div>
                         {[
-                            ['bracketl', 'Left Bracket'],
-                            ['bracketr', 'Right Bracket'],
-                            ['fhold', 'Hold Forward'],
-                            ['n', 'Neutral'],
+                            ['bracketl', 'bracketl'],
+                            ['bracketr', 'bracketr'],
+                            ['fhold', 'fhold'],
+                            ['n', 'n'],
+                            ['into', 'into'],
                         ].map(([input, label]) => (
                             <div key={input} className="flex items-center gap-2">
                                 <span className="w-16">{input}</span>
