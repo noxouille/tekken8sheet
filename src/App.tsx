@@ -71,86 +71,111 @@ export function App() {
 
   if (data) {
     return (
-      <div className="p-4">
-        <div className="flex justify-end mb-4">
+      <div>
+        <div css={{ display: "flex", justifyContent: "flex-end" }}>
           <TxtImporter onChange={setData} />
         </div>
+
         {data && <Sheet data={data} />}
       </div>
     );
   } else {
     return (
-      <div className="min-h-screen p-4 flex flex-col items-center">
-        <div className="text-3xl mb-6 text-center">
+      <div
+        css={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 20,
+          flexGrow: 1,
+        }}
+      >
+        <div
+          css={{
+            fontSize: 32,
+          }}
+        >
           Select a txt file to get started.
         </div>
 
         <TxtImporter onChange={setData} />
 
-        <div className="w-full max-w-6xl mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Input Reference Section */}
-          <div className="bg-white rounded-lg shadow p-4">
-            <h2 className="text-xl font-semibold mb-4">
+        <div css={{ display: "flex", gap: 40 }}>
+          <div
+            css={{
+              display: "grid",
+              gridTemplateColumns: "max-content max-content",
+              gap: 10,
+              img: { width: 30 },
+              alignItems: "flex-start",
+            }}
+          >
+            <span css={{ gridColumnStart: "span 2" }}>
               List of recognized inputs
-            </h2>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="col-span-2 font-medium">Directional Inputs</div>
-              {[
-                ["u", "u"],
-                ["d", "d"],
-                ["f", "f"],
-                ["b", "b"],
-                ["uf", "uf"],
-                ["ub", "ub"],
-                ["df", "df"],
-                ["db", "db"],
-              ].map(([input, label]) => (
-                <div key={input} className="flex items-center gap-2">
-                  <span className="w-16">{input}</span>
-                  <Move move={{ inputs: [input] }} />
-                </div>
-              ))}
+            </span>
+            <span>u</span>
+            <Move move={{ inputs: ["u"] }} />
+            <span>d</span>
+            <Move move={{ inputs: ["d"] }} />
+            <span>f</span>
+            <Move move={{ inputs: ["f"] }} />
+            <span>b</span>
+            <Move move={{ inputs: ["b"] }} />
 
-              <div className="col-span-2 font-medium mt-4">Button Inputs</div>
-              {[
-                ["1", "1"],
-                ["2", "2"],
-                ["3", "3"],
-                ["4", "4"],
-                ["1+2", "1+2"],
-                ["1+3", "1+3"],
-                ["1+4", "1+4"],
-                ["2+3", "2+3"],
-                ["2+4", "2+4"],
-                ["3+4", "3+4"],
-                ["1+2+3+4", "1+2+3+4"],
-              ].map(([input]) => (
-                <div key={input} className="flex items-center gap-2">
-                  <span className="w-16">{input}</span>
-                  <Move move={{ inputs: [input] }} />
-                </div>
-              ))}
+            <span>uf</span>
+            <Move move={{ inputs: ["uf"] }} />
+            <span>ub</span>
+            <Move move={{ inputs: ["ub"] }} />
+            <span>df</span>
+            <Move move={{ inputs: ["df"] }} />
+            <span>db</span>
+            <Move move={{ inputs: ["db"] }} />
 
-              <div className="col-span-2 font-medium mt-4">Special Inputs</div>
-              {[
-                ["bracketl", "bracketl"],
-                ["bracketr", "bracketr"],
-                ["fhold", "fhold"],
-                ["n", "n"],
-                ["into", "into"],
-              ].map(([input, label]) => (
-                <div key={input} className="flex items-center gap-2">
-                  <span className="w-16">{input}</span>
-                  <Move move={{ inputs: [input] }} />
-                </div>
-              ))}
-            </div>
+            <span>hold variant, e.g. fhold</span>
+            <Move move={{ inputs: ["fhold"] }} />
+            <span>n</span>
+            <Move move={{ inputs: ["n"] }} />
+
+            <span>1</span>
+            <Move move={{ inputs: ["1"] }} />
+            <span>2</span>
+            <Move move={{ inputs: ["2"] }} />
+            <span>3</span>
+            <Move move={{ inputs: ["3"] }} />
+            <span>4</span>
+            <Move move={{ inputs: ["4"] }} />
+
+            <span>1+2</span>
+            <Move move={{ inputs: ["1+2"] }} />
+            <span>1+3</span>
+            <Move move={{ inputs: ["1+3"] }} />
+            <span>1+4</span>
+            <Move move={{ inputs: ["1+4"] }} />
+            <span>2+3</span>
+            <Move move={{ inputs: ["2+3"] }} />
+            <span>2+4</span>
+            <Move move={{ inputs: ["2+4"] }} />
+            <span>3+4</span>
+            <Move move={{ inputs: ["3+4"] }} />
+            <span>1+2+3+4</span>
+            <Move move={{ inputs: ["1+2+3+4"] }} />
+
+            <span>bracketl</span>
+            <Move move={{ inputs: ["bracketl"] }} />
+            <span>bracketr</span>
+            <Move move={{ inputs: ["bracketr"] }} />
           </div>
 
-          {/* Source Example Section */}
-          <div className="bg-white rounded-lg shadow p-4">
-            <h2 className="text-xl font-semibold mb-4">Source Example</h2>
-            <pre className="text-sm bg-gray-50 p-4 rounded overflow-x-auto">
+          <div>
+            Source
+            <pre
+              css={{
+                border: "thin solid #ccc",
+                padding: "10px 20px",
+                borderRadius: 5,
+              }}
+            >
               {`Nina
 
 # Neutral
@@ -168,14 +193,20 @@ db 3
 
 # Punish
 1 4 (10f)
-uf 2 (15f)`}
+uf 2 (15f)
+`}
             </pre>
           </div>
 
-          {/* Output Preview Section */}
-          <div className="bg-white rounded-lg shadow p-4">
-            <h2 className="text-xl font-semibold mb-4">Output Preview</h2>
-            <div className="border border-gray-200 rounded p-4">
+          <div>
+            Output
+            <div
+              css={{
+                border: "thin solid #ccc",
+                padding: "10px 20px",
+                borderRadius: 5,
+              }}
+            >
               <Sheet data={ninaDemo} />
             </div>
           </div>
